@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Abhiram | Mechanical Engineering Portfolio</title>
+<meta name="description" content="Mechanical engineering portfolio of Dampetla Sai Abhiram Gowd: CAD, finite element analysis and engineering calculations using Creo and Ansys Mechanical.">
+<meta name="theme-color" content="#1b2a41">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f1f4f7;
+    --grid: #dbe3ea;
+    --ink: #1b2a41;
+    --muted: #4d5b70;
+    --line: #1b2a41;
+    --blue: #1f5fa8;
+    --heat: #d9622b;
+    --sheet: #fbfcfd;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  section { scroll-margin-top: 20px; }
+  [hidden] { display: none !important; }
+  .tb-cell { min-width: 0; overflow-wrap: anywhere; }
+  .figs { grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); }
+  .disc-gallery img { aspect-ratio: 8 / 5; object-fit: contain; }
+  .screenshot-link { display: block; cursor: zoom-in; }
+  .image-dialog { width: min(96vw, 1600px); max-height: 95vh; padding: 12px; border: 2px solid var(--line); background: var(--sheet); }
+  .image-dialog::backdrop { background: rgba(0,0,0,.8); }
+  .image-dialog img { display: block; width: 100%; height: auto; max-height: 80vh; object-fit: contain; }
+  .image-dialog button { font: inherit; padding: 6px 14px; cursor: pointer; margin-bottom: 8px; }
+  .badge { display: inline-block; font-size: .82rem; font-weight: 600; color: var(--blue); background: #e5ecf3; padding: 4px 10px; margin-bottom: 12px; }
+  .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
+  .actions button { font: inherit; cursor: pointer; background: var(--sheet); color: var(--blue); padding: 8px 16px; border: 1px solid var(--blue); font-weight: 600; }
+  .actions a { padding: 8px 16px; border: 1px solid var(--blue); text-decoration: none; font-weight: 600; }
+  .actions a:first-child { background: var(--blue); color: white; }
+  .skip { position: absolute; left: 16px; top: -100px; padding: 8px 16px; background: white; z-index: 10; }
+  .skip:focus { top: 12px; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  @media (max-width: 420px) { .wrap { padding: 12px 12px 40px; } .tb-main { padding: 20px; } .sheet { padding: 16px; } nav { gap: 16px; } }
+  @media print { body { background: white; font-size: 11pt; } nav, .actions, .skip { display: none; } .wrap { max-width: none; padding: 0; } .sheet { break-inside: avoid; } }
+  body {
+    margin: 0;
+    font-family: "Source Sans 3", system-ui, sans-serif;
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--ink);
+    background-color: var(--paper);
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+  h1, h2, h3 {
+    font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
+    font-weight: 600;
+    line-height: 1.05;
+    margin: 0;
+    letter-spacing: 0.01em;
+  }
+  a { color: var(--blue); }
+  a:focus-visible, button:focus-visible { outline: 3px solid var(--heat); outline-offset: 3px; }
+
+  .wrap { max-width: 980px; margin: 0 auto; padding: 24px 20px 64px; }
+
+  /* Title block (the one memorable element) */
+  .titleblock {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    border: 2px solid var(--line);
+    background: var(--sheet);
+    margin-top: 24px;
+  }
+  .tb-main { padding: 28px 28px 24px; border-right: 2px solid var(--line); }
+  .tb-main h1 { font-size: clamp(3rem, 9vw, 5.5rem); font-weight: 700; }
+  .tb-main .role { font-family: "Barlow Condensed", sans-serif; font-size: 1.5rem; color: var(--blue); margin-top: 8px; font-weight: 500; }
+  .tb-side { display: grid; grid-template-rows: repeat(4, 1fr); }
+  .tb-cell { padding: 10px 16px; border-bottom: 1px solid var(--line); font-size: 0.95rem; }
+  .tb-cell:last-child { border-bottom: 0; }
+  .tb-cell span { display: block; font-size: 0.8rem; color: var(--muted); }
+  .tb-cell b { font-weight: 600; }
+
+  nav { margin: 16px 0 40px; display: flex; gap: 24px; flex-wrap: wrap; font-weight: 600; }
+  nav a { text-decoration: none; border-bottom: 2px solid var(--blue); padding-bottom: 2px; }
+
+  section { margin-bottom: 56px; }
+  h2 { font-size: 2.4rem; margin-bottom: 16px; border-bottom: 2px solid var(--line); padding-bottom: 6px; }
+
+  .about p { max-width: 68ch; margin: 0 0 14px; }
+
+  /* Project sheets */
+  .sheet {
+    background: var(--sheet);
+    border: 2px solid var(--line);
+    padding: 28px;
+    margin-bottom: 36px;
+  }
+  .sheet h3 { font-size: 2rem; }
+  .tools { color: var(--muted); margin: 6px 0 18px; font-size: 0.98rem; }
+  .sheet h4 { font-size: 1.05rem; margin: 22px 0 6px; font-weight: 600; }
+  .sheet p { max-width: 70ch; margin: 0 0 10px; }
+  .sheet ul { max-width: 70ch; padding-left: 20px; margin: 0 0 10px; }
+
+  table { border-collapse: collapse; width: 100%; max-width: 640px; margin: 8px 0 6px; font-size: 1rem; }
+  th, td { border: 1px solid var(--line); padding: 8px 12px; text-align: left; }
+  th { background: #e5ecf3; font-weight: 600; }
+  td.num { font-variant-numeric: tabular-nums; }
+  .scroll { overflow-x: auto; }
+
+  .figs { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); gap: 16px; margin-top: 12px; }
+  figure { margin: 0; }
+  figure img { width: 100%; height: auto; display: block; border: 1px solid var(--line); background: #fff; }
+  figcaption { font-size: 0.9rem; color: var(--muted); margin-top: 6px; }
+  .ph {
+    display: none;
+    align-items: center; justify-content: center; text-align: center;
+    min-height: 170px; padding: 12px;
+    border: 2px dashed var(--muted); color: var(--muted); font-size: 0.9rem;
+  }
+
+  
+  .skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0; border: 2px solid var(--line); background: var(--sheet); }
+  .skills div { padding: 16px 20px; border-right: 1px solid var(--line); }
+  .skills div:last-child { border-right: 0; }
+  .skills h3 { font-size: 1.3rem; margin-bottom: 6px; }
+  .skills p { margin: 0; }
+
+  footer { border-top: 2px solid var(--line); padding-top: 16px; color: var(--muted); font-size: 0.95rem; }
+
+  @media (max-width: 720px) {
+    .titleblock { grid-template-columns: 1fr; }
+    .tb-main { border-right: 0; border-bottom: 2px solid var(--line); }
+    .tb-side { grid-template-rows: none; }
+    .skills div { border-right: 0; border-bottom: 1px solid var(--line); }
+    .skills div:last-child { border-bottom: 0; }
+    .sheet { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="wrap">
+
+  <header class="titleblock">
+    <div class="tb-main">
+      <h1>Abhiram</h1>
+      <div class="role">Mechanical Engineering Student | CAE and Design</div>
+    </div>
+    <div class="tb-side">
+      <div class="tb-cell"><span>College</span><b>SVU College of Engineering, Tirupati</b></div>
+      <div class="tb-cell"><span>Degree</span><b>B.Tech Mechanical, 2023-2027</b></div>
+      <div class="tb-cell"><span>Software</span><b>Creo, Ansys Mechanical</b></div>
+      <div class="tb-cell"><span>Contact</span><b><a href="mailto:abhiramgowd11@gmail.com">abhiramgowd11@gmail.com</a></b></div>
+    </div>
+  </header>
+
+  <nav aria-label="Main navigation">
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <main id="main">
+  <section id="about" class="about">
+    <h2>About</h2>
+    <p>
+      Hi, I'm Dampetla Sai Abhiram Gowd, a final-year B.Tech Mechanical Engineering student at
+      SVU College of Engineering, Sri Venkateswara University, Tirupati.
+    </p>
+    <p>
+      I like understanding how parts behave under load. I model components in Creo,
+      simulate them in Ansys Mechanical, and check my results against hand calculations.
+    </p>
+    <p>
+      I'm looking for core mechanical roles in CAE, FEA and design engineering, with an interest
+      in automotive and aerospace. I am also open to mechanical design and simulation internships.
+    </p>
+    <div class="actions">
+      <a href="#projects">Explore my projects</a>
+      <a href="#contact">Get in touch</a>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2>Projects</h2>
+
+    <!-- PROJECT 1: BOLTED JOINT -->
+    <article class="sheet">
+      <span class="badge">Featured project · Validation in progress</span>
+      <h3>Bolted Joint Analysis</h3>
+      <p class="tools">Creo for geometry · Ansys Mechanical 2026 R1</p>
+      <h4>Objective</h4>
+      <p>Investigate preload, external-load sharing and structural response in a steel bolted joint,
+      using analytical estimates alongside finite element results.</p>
+      <h4>Model and setup</h4>
+      <ul>
+        <li>M10 bolt and nut clamping two steel plates, with frictional contact</li>
+        <li>Reported plate dimensions: 60 × 40 × 10 mm each; clearance hole: 11 mm</li>
+        <li>Reported load sequence: 26,100 N pretension in Step 1, locked pretension and 6,000 N external force in Step 2</li>
+        <li>Global mesh element-size setting: 3 mm</li>
+      </ul>
+      <h4>Recorded Step 2 results</h4>
+      <div class="scroll" role="region" aria-label="Bolted joint recorded results" tabindex="0">
+      <table>
+        <caption>Values displayed at analysis time 2 s</caption>
+        <thead><tr><th scope="col">Parameter</th><th scope="col">Recorded value</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Bolt Tool working load</th><td class="num">26,300 N</td></tr>
+          <tr><th scope="row">Bolt Tool adjustment</th><td class="num">0.058464 mm</td></tr>
+          <tr><th scope="row">Maximum assembly total deformation</th><td class="num">0.08943 mm</td></tr>
+          <tr><th scope="row">Maximum Z-axis normal stress, bolt body</th><td class="num">685.18 MPa</td></tr>
+          <tr><th scope="row">Minimum Z-axis normal stress, bolt body</th><td class="num">−246.93 MPa</td></tr>
+          <tr><th scope="row">Displayed average Z-axis normal stress, bolt body</th><td class="num">110.72 MPa</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <h4>Analytical reference</h4>
+      <p>Using the M10 tensile stress area of 58 mm², nominal preload stress is
+      26,100 / 58 = 450 MPa. A bolt force of 26,300 N corresponds to a nominal
+      tensile-area stress of approximately 453.4 MPa.</p>
+      <p>The displayed whole-body stress average and local peaks use different scopes from
+      the analytical tensile-area estimate. A section-based axial-force check and mesh study
+      are needed before claiming stress agreement. The tensile stress area is an analytical
+      reference, rather than a confirmed cross-section of the simplified CAD bolt.</p>
+      <h4>Project focus</h4>
+      <p>Two-step pretension modelling, frictional contact, bolt-force extraction and interpretation
+      of nominal stress versus local finite element stress. Input load definitions and fixed-support
+      scoping are reported setup details; the supplied screenshots document the mesh and solution results.</p>
+      <h4>Analysis screenshots</h4>
+      <p class="tools">Select a screenshot to view it at a larger size.</p>
+      <div class="figs disc-gallery">
+        <figure>
+          <a href="images/bolted-joint/mesh.png" class="screenshot-link" aria-label="Enlarge: Assembly mesh"><img src="images/bolted-joint/mesh.png" alt="Assembly mesh — ANSYS bolted-joint structural study" loading="lazy" decoding="async" width="1920" height="1200"></a>
+          <figcaption><strong>Assembly mesh.</strong> Bolted-joint assembly mesh with a global element-size setting of 3 mm.</figcaption>
+        </figure>
+        <figure>
+          <a href="images/bolted-joint/material.png" class="screenshot-link" aria-label="Enlarge: Material properties"><img src="images/bolted-joint/material.png" alt="Material properties — ANSYS bolted-joint structural study" loading="lazy" decoding="async" width="1920" height="1200"></a>
+          <figcaption><strong>Material properties.</strong> Engineering Data shows Young’s modulus 207 GPa, Poisson’s ratio 0.3, tensile yield strength 640 MPa and tensile ultimate strength 800 MPa. Body assignments are not shown.</figcaption>
+        </figure>
+        <figure>
+          <a href="images/bolted-joint/pretension-result.png" class="screenshot-link" aria-label="Enlarge: Bolt pretension result"><img src="images/bolted-joint/pretension-result.png" alt="Bolt pretension result — ANSYS bolted-joint structural study" loading="lazy" decoding="async" width="1920" height="1200"></a>
+          <figcaption><strong>Bolt pretension result.</strong> Pretension result probe and tabulated adjustment/working-load history. This view shows results rather than the preload input definition.</figcaption>
+        </figure>
+        <figure>
+          <a href="images/bolted-joint/working-load.png" class="screenshot-link" aria-label="Enlarge: Bolt working load"><img src="images/bolted-joint/working-load.png" alt="Bolt working load — ANSYS bolted-joint structural study" loading="lazy" decoding="async" width="1920" height="1200"></a>
+          <figcaption><strong>Bolt working load.</strong> Bolt Tool working load at time 2 s (Step 2): 26,300 N.</figcaption>
+        </figure>
+        <figure>
+          <a href="images/bolted-joint/adjustment.png" class="screenshot-link" aria-label="Enlarge: Pretension adjustment"><img src="images/bolted-joint/adjustment.png" alt="Pretension adjustment — ANSYS bolted-joint structural study" loading="lazy" decoding="async" width="1920" height="1200"></a>
+          <figcaption><strong>Pretension adjustment.</strong> Bolt Tool adjustment at time 2 s: 0.058464 mm.</figcaption>
+        </figure>
+        <figure>
+          <a href="images/bolted-joint/deformation.png" class="screenshot-link" aria-label="Enlarge: Total deformation"><img src="images/bolted-joint/deformation.png" alt="Total deformation — ANSYS bolted-joint structural study" loading="lazy" decoding="async" width="1920" height="1200"></a>
+          <figcaption><strong>Total deformation.</strong> Maximum assembly total deformation at time 2 s: 0.08943 mm; minimum: 0 mm.</figcaption>
+        </figure>
+        <figure>
+          <a href="images/bolted-joint/directional-deformation.png" class="screenshot-link" aria-label="Enlarge: Directional deformation"><img src="images/bolted-joint/directional-deformation.png" alt="Directional deformation — ANSYS bolted-joint structural study" loading="lazy" decoding="async" width="1920" height="1200"></a>
+          <figcaption><strong>Directional deformation.</strong> Global X-direction deformation on two selected bolt faces at time 2 s: maximum −0.0009466 mm, minimum −0.031175 mm. This component is not identified as bolt-axis extension.</figcaption>
+        </figure>
+        <figure>
+          <a href="images/bolted-joint/normal-stress.png" class="screenshot-link" aria-label="Enlarge: Normal stress"><img src="images/bolted-joint/normal-stress.png" alt="Normal stress — ANSYS bolted-joint structural study" loading="lazy" decoding="async" width="1920" height="1200"></a>
+          <figcaption><strong>Normal stress.</strong> Z-axis normal stress in the selected coordinate system, scoped to the bolt body at time 2 s: maximum 685.18 MPa, minimum −246.93 MPa, displayed average 110.72 MPa.</figcaption>
+        </figure>
+        <figure>
+          <a href="images/bolted-joint/contact-reaction.png" class="screenshot-link" aria-label="Enlarge: Contact force reaction"><img src="images/bolted-joint/contact-reaction.png" alt="Contact force reaction — ANSYS bolted-joint structural study" loading="lazy" decoding="async" width="1920" height="1200"></a>
+          <figcaption><strong>Contact force reaction.</strong> Force reaction scoped to a frictional contact region, with components resolved in the selected coordinate system. This is not the fixed-support reaction.</figcaption>
+        </figure>
+        <figure>
+          <a href="images/bolted-joint/equivalent-stress.png" class="screenshot-link" aria-label="Enlarge: Equivalent stress"><img src="images/bolted-joint/equivalent-stress.png" alt="Equivalent stress — ANSYS bolted-joint structural study" loading="lazy" decoding="async" width="1920" height="1200"></a>
+          <figcaption><strong>Equivalent stress.</strong> Recorded local von Mises peak: 3419.9 MPa at time 2 s. Interpretation requires contact, mesh and material-response checks; this peak is not used as a validated nominal bolt stress.</figcaption>
+        </figure>
+      </div>
+    </article>
+
+    <!-- PROJECT 2: DISC BRAKE -->
+    <article class="sheet">
+      <span class="badge">Static structural study</span>
+      <h3>Disc Brake Static Structural Analysis</h3>
+      <p class="tools">Creo for geometry · Ansys Mechanical 2026 R1</p>
+      <h4>Objective</h4>
+      <p>Investigate the structural response of a perforated brake disc under applied pressure
+      and rotational loading, with the hub face constrained.</p>
+      <h4>Recorded model setup</h4>
+      <ul>
+        <li>Material library: Structural Steel; Young’s modulus 200 GPa, Poisson’s ratio 0.3,
+        density 7,850 kg/m³ and tensile yield strength 250 MPa</li>
+        <li>Pressure: 2 × 10<sup>−6</sup> MPa on one annular face</li>
+        <li>Rotational velocity: 55 rad/s on the disc body</li>
+        <li>Boundary condition: fixed support on the hub face shown below</li>
+      </ul>
+      <h4>Recorded deformation result</h4>
+      <div class="scroll" role="region" aria-label="Disc brake deformation results" tabindex="0">
+        <table>
+          <caption>Values displayed in the supplied ANSYS result</caption>
+          <thead><tr><th scope="col">Result</th><th scope="col">Value</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Maximum total deformation</th><td class="num">1.8089 mm</td></tr>
+            <tr><th scope="row">Minimum total deformation</th><td class="num">0 mm</td></tr>
+            <tr><th scope="row">Average total deformation</th><td class="num">1.5165 mm</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>The displayed contour places the largest deformation near the outer disc region
+      and the minimum near the constrained hub. These are recorded simulation outputs;
+      dimensions, input units and mesh convergence remain to be verified.</p>
+      <h4>Analysis screenshots</h4>
+      <p class="tools">Select a screenshot to view it at a larger size.</p>
+      <div class="figs disc-gallery">
+        <figure>
+          <a href="images/disc-brake/material.png" class="screenshot-link" aria-label="Enlarge: Material properties"><img src="images/disc-brake/material.png" alt="Material properties — ANSYS disc brake static structural study" loading="lazy" width="1920" height="1200" decoding="async"></a>
+          <figcaption><strong>Material properties.</strong> Structural Steel in Engineering Data: Young’s modulus 200 GPa, Poisson’s ratio 0.3, density 7,850 kg/m³ and tensile yield strength 250 MPa.</figcaption>
+        </figure>
+        <figure>
+          <a href="images/disc-brake/mesh.png" class="screenshot-link" aria-label="Enlarge: Finite element mesh"><img src="images/disc-brake/mesh.png" alt="Finite element mesh — ANSYS disc brake static structural study" loading="lazy" width="1920" height="1200" decoding="async"></a>
+          <figcaption><strong>Finite element mesh.</strong> Mesh of the perforated brake disc. Element count and mesh-convergence results are not included in the supplied screenshots.</figcaption>
+        </figure>
+        <figure>
+          <a href="images/disc-brake/pressure.png" class="screenshot-link" aria-label="Enlarge: Applied pressure"><img src="images/disc-brake/pressure.png" alt="Applied pressure — ANSYS disc brake static structural study" loading="lazy" width="1920" height="1200" decoding="async"></a>
+          <figcaption><strong>Applied pressure.</strong> Pressure applied to one annular face. Recorded magnitude: 2 × 10⁻⁶ MPa.</figcaption>
+        </figure>
+        <figure>
+          <a href="images/disc-brake/fixed-support.png" class="screenshot-link" aria-label="Enlarge: Fixed support"><img src="images/disc-brake/fixed-support.png" alt="Fixed support — ANSYS disc brake static structural study" loading="lazy" width="1920" height="1200" decoding="async"></a>
+          <figcaption><strong>Fixed support.</strong> Fixed support scoped to the highlighted hub face.</figcaption>
+        </figure>
+        <figure>
+          <a href="images/disc-brake/rotational-velocity.png" class="screenshot-link" aria-label="Enlarge: Rotational velocity"><img src="images/disc-brake/rotational-velocity.png" alt="Rotational velocity — ANSYS disc brake static structural study" loading="lazy" width="1920" height="1200" decoding="async"></a>
+          <figcaption><strong>Rotational velocity.</strong> Rotational velocity scoped to the disc body: 55 rad/s.</figcaption>
+        </figure>
+        <figure>
+          <a href="images/disc-brake/deformation.png" class="screenshot-link" aria-label="Enlarge: Total deformation"><img src="images/disc-brake/deformation.png" alt="Total deformation — ANSYS disc brake static structural study" loading="lazy" width="1920" height="1200" decoding="async"></a>
+          <figcaption><strong>Total deformation.</strong> Reported maximum total deformation: 1.8089 mm; minimum: 0 mm; average: 1.5165 mm.</figcaption>
+        </figure>
+      </div>
+    </article>
+  </section>
+
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="skills">
+      <div><h3>CAD</h3><p>Creo Parametric</p></div>
+      <div><h3>Simulation</h3><p>Ansys Mechanical: static structural, contact, bolt pretension</p></div>
+      <div><h3>Validation</h3><p>Hand calculations to check simulation results</p></div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>Interested in discussing a project or an internship opportunity? Email me or connect on LinkedIn.</p>
+    <div class="actions">
+      <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=abhiramgowd11%40gmail.com" target="_blank" rel="noopener noreferrer">Write in Gmail</a>
+      <button id="copy-email" type="button" hidden>Copy email</button>
+    </div>
+    <p id="copy-status" role="status" aria-live="polite"></p>
+    <p>
+      <a href="mailto:abhiramgowd11@gmail.com">abhiramgowd11@gmail.com</a><br>
+      <a href="https://www.linkedin.com/in/abhiram-gowd-b06a98279/">LinkedIn</a><br>
+      <a href="https://github.com/Abhiram-a11y">GitHub</a>
+    </p>
+  </section>
+
+  </main>
+
+  <footer>Dampetla Sai Abhiram Gowd | B.Tech Mechanical Engineering, SVUCE Tirupati</footer>
+</div>
+<dialog class="image-dialog" id="image-viewer" aria-label="Project screenshot">
+  <button type="button" id="close-viewer">Close image</button>
+  <img id="viewer-image" alt="">
+</dialog>
+<script>
+const imageViewer = document.getElementById('image-viewer');
+const viewerImage = document.getElementById('viewer-image');
+document.querySelectorAll('.screenshot-link').forEach(function (link) {
+  link.addEventListener('click', function (event) {
+    event.preventDefault();
+    const source = link.querySelector('img');
+    viewerImage.src = source.src;
+    viewerImage.alt = source.alt;
+    imageViewer.showModal();
+  });
+});
+document.getElementById('close-viewer').addEventListener('click', function () { imageViewer.close(); });
+imageViewer.addEventListener('click', function (event) { if (event.target === imageViewer) imageViewer.close(); });
+
+const copyEmailButton = document.getElementById('copy-email');
+copyEmailButton.hidden = false;
+copyEmailButton.addEventListener('click', async function () {
+  const email = 'abhiramgowd11@gmail.com';
+  const status = document.getElementById('copy-status');
+  try {
+    if (!navigator.clipboard || !navigator.clipboard.writeText) throw new Error('Clipboard unavailable');
+    await navigator.clipboard.writeText(email);
+    status.textContent = 'Email address copied.';
+  } catch (error) {
+    status.textContent = 'Select and copy this email address: ' + email;
+    const range = document.createRange();
+    range.selectNodeContents(status);
+    const selection = window.getSelection();
+    if (selection) { selection.removeAllRanges(); selection.addRange(range); }
+  }
+});
+// Reveal only supplied project screenshots; the portfolio also works without them.
+document.querySelectorAll('.figs img').forEach(function (img) {
+  function reveal() { if (img.naturalWidth > 0) img.closest('figure').hidden = false; }
+  img.addEventListener('load', reveal);
+  img.addEventListener('error', function () { img.closest('figure').hidden = true; });
+  // Hidden images must load before their figures can be revealed.
+  img.loading = 'eager';
+  if (img.complete) reveal();
+});
+</script>
+</body>
+</html>
